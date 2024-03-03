@@ -1,0 +1,13 @@
+#container{
+    width: 393px;
+    height: 852px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+img{
+    width: 393px;
+    height: auto;
+    margin-bottom: -858px;
+}

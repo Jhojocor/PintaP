@@ -1,3 +1,16 @@
+const container = document.getElementById("container")
+container.scrollTop = 852;
+
+function setup() {
+  let canva = createCanvas(393, 852);
+  canva.parent('container')
+}
+
+function draw() {
+  background();
+  ellipse(mouseX, mouseY, 50, 50);
+}
+
 const tablero = [
     { id: 1, tipo: "Pink", posicion: [0, 0] },
     { id: 2, tipo: "Blue", posicion: [0, 1] },
