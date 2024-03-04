@@ -2,46 +2,41 @@ const URL = `http://${window.location.hostname}:8080`;
 let socket = io(URL, { path: '/real-time' });
 
 const container = document.getElementById("container")
-/*container.scrollTop = 852;*/
-
-let amarillaImgs = [];
-let azulImgs = [];
-let moradaImgs = [];
-let rosaImgs = [];
-
-function preload() {
-  for (let i = 0; i <= 19; i++) {
-    amarillaImgs.push(loadImage(`img/Amarillas/${i}.png`));
-    console.log(`img/Amarillas/${i}.png`);
-  }
-  for (let i = 0; i <= 19; i++) {
-    azulImgs.push(loadImage(`img/Azules/${i}.png`));
-    console.log(`img/Azules/${i}.png`);
-  }
-  for (let i = 0; i <= 19; i++) {
-    moradaImgs.push(loadImage(`img/Moradas/${i}.png`));
-    console.log(`img/Moradas/${i}.png`);
-  }
-  for (let i = 0; i <= 19; i++) {
-    rosaImgs.push(loadImage(`img/Rosas/${i}.png`));
-    console.log(`img/Rosas/${i}.png`);
-  }
-}
+container.scrollTop = 852;
 
 function setup() {
   let canva = createCanvas(393, 1500);
   canva.parent('container')
 }
 
-function lanzarDado() {
-    const resultado = Math.floor(Math.random() * 6) + 1;
-    return resultado;
-}
+let amarillaImgs = [];
+let azulImgs = [];
+let moradaImgs = [];
+let rosaImgs = [];
 
-document.getElementById('dado').addEventListener('click', function resultado() {
-  const resultadoLanzamiento = lanzarDado();
-  alert("El resultado del lanzamiento es: " + resultadoLanzamiento);
-})
+let amarillaURL = []
+let azulURL = []
+let moradaURL = []
+let rosaURL = []
+
+function preload() {
+  for (let i = 0; i <= 19; i++) {
+    amarillaImgs.push(loadImage(`img/Amarillas/${i}.png`));
+    amarillaURL.push(`img/Amarillas/${i}.png`);
+  }
+  for (let i = 0; i <= 19; i++) {
+    azulImgs.push(loadImage(`img/Azules/${i}.png`));
+    azulURL.push(`img/Azules/${i}.png`);
+  }
+  for (let i = 0; i <= 19; i++) {
+    moradaImgs.push(loadImage(`img/Moradas/${i}.png`));
+    moradaURL.push(`img/Moradas/${i}.png`);
+  }
+  for (let i = 0; i <= 19; i++) {
+    rosaImgs.push(loadImage(`img/Rosas/${i}.png`));
+    rosaURL.push(`img/Rosas/${i}.png`);
+  }
+}
 
 let casillas = [
   { id: 1, tipo: "Rosa", x: 280, y: 1390, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
@@ -123,11 +118,48 @@ let casillas = [
 
 console.log(casillas);
 
+function lanzarDado() {
+    const resultado = Math.floor(Math.random() * 6) + 1;
+    return resultado;
+}
+
+document.getElementById('dado').addEventListener('click', function resultado() {
+  const resultadoLanzamiento = lanzarDado();
+  alert("El resultado del lanzamiento es: " + resultadoLanzamiento);
+})
+
 function mousePressed() {
   for (let i = 0; i < casillas.length; i++) {
     let casilla = casillas[i];
     if (mouseX > casilla.x && mouseX < casilla.x + casilla.ancho && mouseY > casilla.y && mouseY < casilla.y + casilla.alto) {
-      console.log("Casilla clicada:", casilla.tipo, "ID:", casilla.id);
+      let tipo = casilla.tipo.toLowerCase();
+
+      let img;
+      switch (tipo) {
+        case "amarillo":
+          img = random(amarillaURL);
+          console.log(img);
+          break;
+        case "azul":
+          img = random(azulURL);
+          break;
+        case "morado":
+          img = random(moradaURL);
+          break;
+        case "rosa":
+          img = random(rosaURL);
+          break;
+        default:
+          console.error("Tipo de casilla no válido:", tipo);
+          return;
+      }
+
+      let popupImg = createImg(img);
+      popupImg.position(casilla.x + casilla.ancho / 2 - img.width / 2, casilla.y + casilla.alto / 2 - img.height / 2);
+
+      popupImg.mousePressed(() => {
+        popupImg.remove();
+      });
     }
   }
 }
@@ -137,5 +169,4 @@ function draw() {
     let casilla = casillas[i];
     rect(casilla.x, casilla.y, casilla.ancho, casilla.alto);
   }
-  background();
 }
