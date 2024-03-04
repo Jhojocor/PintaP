@@ -6,37 +6,46 @@ function setup() {
   canva.parent('container')
 }
 
-function draw() {
-  background();
-  ellipse(mouseX, mouseY, 50, 50);
-}
-
-const tablero = [
-    { id: 1, tipo: "Pink", posicion: [0, 0] },
-    { id: 2, tipo: "Blue", posicion: [0, 1] },
-    { id: 3, tipo: "Yellow", posicion: [0, 2] },
-    { id: 4, tipo: "Purple", posicion: [0, 3] },
-    { id: 5, tipo: "Purple", posicion: [0, 4] },
-    { id: 6, tipo: "Yellow", posicion: [0, 5] },
-    { id: 7, tipo: "Blue", posicion: [0, 6] },
-    { id: 8, tipo: "Pink", posicion: [0, 7] },
-    { id: 9, tipo: "Blue", posicion: [0, 8] },
-    { id: 10, tipo: "purple", posicion: [0, 9] },
-    { id: 11, tipo: "Yellow", posicion: [0, 10] },
-    { id: 12, tipo: "Blue", posicion: [0, 11] },
-    { id: 13, tipo: "Pink", posicion: [0, 12] },
-    { id: 14, tipo: "purple", posicion: [0, 13] },
-    { id: 15, tipo: "Pink", posicion: [0, 14] },
-    { id: 16, tipo: "Yellow", posicion: [0, 15] },
-    { id: 16, tipo: "Yellow", posicion: [0, 15] },
-];
-
-console.log(tablero);
-
 function lanzarDado() {
     const resultado = Math.floor(Math.random() * 6) + 1;
     return resultado;
+}
+
+document.getElementById('dado').addEventListener('click', function resultado() {
+  const resultadoLanzamiento = lanzarDado();
+  alert("El resultado del lanzamiento es: " + resultadoLanzamiento);
+})
+
+let casillas = [
+  { id: 1, tipo: "Rosa", x: 280, y: 710, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 2, tipo: "Azul", x: 240, y: 680, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 3, tipo: "Amarillo", x: 200, y: 670, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 4, tipo: "Morado", x: 150, y: 675, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 5, tipo: "Rosa", x: 105, y: 665, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 6, tipo: "Amarillo", x: 70, y: 640, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 7, tipo: "Azul", x: 58, y: 595, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 8, tipo: "Portal", x: 70, y: 555, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 9, tipo: "Rosa", x: 100, y: 525, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 10, tipo: "Morado", x: 145, y: 520, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 11, tipo: "Amarillo", x: 190, y: 530, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 12, tipo: "Azul", x: 235, y: 545, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 13, tipo: "Morado", x: 280, y: 550, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 14, tipo: "Amarillo", x: 315, y: 525, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 15, tipo: "Azul", x: 325, y: 480, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 16, tipo: "Portal", x: 300, y: 445, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 17, tipo: "Amarillo", x: 265, y: 420, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 18, tipo: "Morado", x: 220, y: 415, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 19, tipo: "Rosa", x: 180, y: 425, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 20, tipo: "Azul", x: 135, y: 425, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 21, tipo: "Rosa", x: 100, y: 400, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 22, tipo: "Morado", x: 90, y: 355, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+
+];
+
+function draw() {
+  for (let i = 0; i < casillas.length; i++) {
+    let casilla = casillas[i];
+    rect(casilla.x, casilla.y, casilla.ancho, casilla.alto);
   }
-  
-const resultadoLanzamiento = lanzarDado();
-console.log("El resultado del lanzamiento es: " + resultadoLanzamiento);
+  background();
+}
