@@ -1,5 +1,5 @@
 const container = document.getElementById("container")
-container.scrollTop = 852;
+/*container.scrollTop = 852;*/
 
 function setup() {
   let canva = createCanvas(393, 852);
@@ -39,6 +39,26 @@ let casillas = [
   { id: 20, tipo: "Azul", x: 135, y: 425, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
   { id: 21, tipo: "Rosa", x: 100, y: 400, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
   { id: 22, tipo: "Morado", x: 90, y: 355, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 23, tipo: "Amarillo", x: 110, y: 315, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 24, tipo: "Azul", x: 150, y: 300, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 25, tipo: "Rosa", x: 195, y: 300, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 26, tipo: "Morado", x: 240, y: 295, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 27, tipo: "Amarillo", x: 285, y: 280, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 28, tipo: "Azul", x: 310, y: 250, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 29, tipo: "Amarillo", x: 300, y: 205, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 30, tipo: "Rosa", x: 260, y: 180, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 31, tipo: "Morado", x: 215, y: 180, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 32, tipo: "Portal", x: 170, y: 190, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 33, tipo: "Rosa", x: 125, y: 185, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 34, tipo: "Amarillo", x: 90, y: 160, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 35, tipo: "Azul", x: 80, y: 115, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 36, tipo: "Morado", x: 105, y: 75, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 37, tipo: "Rosa", x: 145, y: 65, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 38, tipo: "Azul", x: 185, y: 60, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 39, tipo: "Rosa", x: 228, y: 60, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 40, tipo: "Azul", x: 275, y: 50, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 41, tipo: "Amarillo", x: 300, y: 10, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
+  { id: 42, tipo: "Morado", x: 300, y: 0, ancho: 30, alto: 30, hitbox: { x: 30, y: 30, ancho: 30, alto: 30 } },
 
 ];
 
