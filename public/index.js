@@ -169,6 +169,8 @@ function mousePressed() {
 function draw() {
   for (let i = 0; i < casillas.length; i++) {
     let casilla = casillas[i];
+    noFill();
+    stroke(0, 0, 0, 0);
     rect(casilla.x, casilla.y, casilla.ancho, casilla.alto);
   }
 }
