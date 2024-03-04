@@ -116,8 +116,6 @@ let casillas = [
 
 ];
 
-console.log(casillas);
-
 function lanzarDado() {
     const resultado = Math.floor(Math.random() * 6) + 1;
     return resultado;
@@ -125,7 +123,7 @@ function lanzarDado() {
 
 document.getElementById('dado').addEventListener('click', function resultado() {
   const resultadoLanzamiento = lanzarDado();
-  alert("El resultado del lanzamiento es: " + resultadoLanzamiento);
+  document.getElementById('dado').innerText = resultadoLanzamiento;
 })
 
 function mousePressed() {
@@ -155,10 +153,14 @@ function mousePressed() {
       }
 
       let popupImg = createImg(img);
-      popupImg.position(casilla.x + casilla.ancho / 2 - img.width / 2, casilla.y + casilla.alto / 2 - img.height / 2);
+      popupImg.size(350, 525);
+      popupImg.position(30, 150);
+
+      document.getElementById('Screen').style.display = 'block';
 
       popupImg.mousePressed(() => {
         popupImg.remove();
+        document.getElementById('Screen').style.display = 'none';
       });
     }
   }
