@@ -4,6 +4,30 @@ let socket = io(URL, { path: '/real-time' });
 const container = document.getElementById("container")
 /*container.scrollTop = 852;*/
 
+let amarillaImgs = [];
+let azulImgs = [];
+let moradaImgs = [];
+let rosaImgs = [];
+
+function preload() {
+  for (let i = 0; i <= 19; i++) {
+    amarillaImgs.push(loadImage(`img/Amarillas/${i}.png`));
+    console.log(`img/Amarillas/${i}.png`);
+  }
+  for (let i = 0; i <= 19; i++) {
+    azulImgs.push(loadImage(`img/Azules/${i}.png`));
+    console.log(`img/Azules/${i}.png`);
+  }
+  for (let i = 0; i <= 19; i++) {
+    moradaImgs.push(loadImage(`img/Moradas/${i}.png`));
+    console.log(`img/Moradas/${i}.png`);
+  }
+  for (let i = 0; i <= 19; i++) {
+    rosaImgs.push(loadImage(`img/Rosas/${i}.png`));
+    console.log(`img/Rosas/${i}.png`);
+  }
+}
+
 function setup() {
   let canva = createCanvas(393, 1500);
   canva.parent('container')
@@ -98,6 +122,15 @@ let casillas = [
 ];
 
 console.log(casillas);
+
+function mousePressed() {
+  for (let i = 0; i < casillas.length; i++) {
+    let casilla = casillas[i];
+    if (mouseX > casilla.x && mouseX < casilla.x + casilla.ancho && mouseY > casilla.y && mouseY < casilla.y + casilla.alto) {
+      console.log("Casilla clicada:", casilla.tipo, "ID:", casilla.id);
+    }
+  }
+}
 
 function draw() {
   for (let i = 0; i < casillas.length; i++) {
