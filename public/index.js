@@ -5,9 +5,30 @@ const container = document.getElementById("container")
 container.scrollTop = 852;
 
 function setup() {
-  let canva = createCanvas(393, 1500);
+  let canva = createCanvas(393, 1530);
   canva.parent('container')
 }
+
+class Ficha {
+  constructor(color, posicion, turno = false, movimiento = false) {
+    this.color = color;
+    this.posicion = posicion;
+    this.arrastre = false;
+    // this.turno = turno; 
+    // this.movimiento = movimiento; 
+  }
+
+  // cambiarTurnoYMovimiento() {
+  //   this.turno = !this.turno;
+  //   this.movimiento = !this.movimiento;
+  }
+
+  // establecerPosicion(posicion) {
+  //   this.posicion = posicion;
+  // }
+//}
+let jugador1 = new Ficha("rgb(255, 0, 0)", { x: 320, y: 1480 });
+let jugador2 = new Ficha("rgb(0, 0, 255)", { x: 320, y: 1440 });
 
 let amarillaImgs = [];
 let azulImgs = [];
@@ -19,7 +40,9 @@ let azulURL = []
 let moradaURL = []
 let rosaURL = []
 
+let backgroundImage;
 function preload() {
+  backgroundImage = loadImage('./img/Tablero.jpg');
   for (let i = 0; i <= 19; i++) {
     amarillaImgs.push(loadImage(`img/Amarillas/${i}.png`));
     amarillaURL.push(`img/Amarillas/${i}.png`);
@@ -127,6 +150,17 @@ document.getElementById('dado').addEventListener('click', function resultado() {
 })
 
 function mousePressed() {
+
+  let d1 = dist(mouseX, mouseY, jugador1.posicion.x, jugador1.posicion.y);
+  if (d1 < 15) {
+    jugador1.arrastre = true;
+  }
+
+  let d2 = dist(mouseX, mouseY, jugador2.posicion.x, jugador2.posicion.y);
+  if (d2 < 15) {
+    jugador2.arrastre = true;
+  }
+
   for (let i = 0; i < casillas.length; i++) {
     let casilla = casillas[i];
     if (mouseX > casilla.x && mouseX < casilla.x + casilla.ancho && mouseY > casilla.y && mouseY < casilla.y + casilla.alto) {
@@ -167,10 +201,35 @@ function mousePressed() {
 }
 
 function draw() {
+background(backgroundImage);
   for (let i = 0; i < casillas.length; i++) {
     let casilla = casillas[i];
-    noFill();
+    noFill(casilla);
     stroke(0, 0, 0, 0);
     rect(casilla.x, casilla.y, casilla.ancho, casilla.alto);
   }
+
+  fill(jugador1.color);
+  ellipse(jugador1.posicion.x, jugador1.posicion.y, 30, 30);
+
+  fill(jugador2.color);
+  ellipse(jugador2.posicion.x, jugador2.posicion.y, 30, 30);
+  
+}
+
+function mouseDragged() {
+  if (jugador1.arrastre) {
+    jugador1.posicion.x = mouseX;
+    jugador1.posicion.y = mouseY;
+  }
+
+  if (jugador2.arrastre) {
+    jugador2.posicion.x = mouseX;
+    jugador2.posicion.y = mouseY;
+  }
+}
+
+function mouseReleased() {
+  jugador1.arrastre = false;
+  jugador2.arrastre = false;
 }
