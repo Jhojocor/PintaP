@@ -1,5 +1,5 @@
-const URL = `http://${window.location.hostname}:8080`;
-let socket = io(URL, { path: '/real-time' });
+// const URL = `http://${window.location.hostname}:8080`;
+// let socket = io(URL, { path: '/real-time' });
 
 const container = document.getElementById("container")
 container.scrollTop = 852;
@@ -10,8 +10,8 @@ function setup() {
 }
 
 class Ficha {
-  constructor(color, posicion, turno = false, movimiento = false) {
-    this.color = color;
+  constructor(imagen, posicion, turno = false, movimiento = false) {
+    this.imagen = imagen;
     this.posicion = posicion;
     this.arrastre = false;
     // this.turno = turno; 
@@ -27,9 +27,6 @@ class Ficha {
   //   this.posicion = posicion;
   // }
 //}
-let jugador1 = new Ficha("rgb(255, 0, 0)", { x: 320, y: 1480 });
-let jugador2 = new Ficha("rgb(0, 0, 255)", { x: 320, y: 1440 });
-
 let amarillaImgs = [];
 let azulImgs = [];
 let moradaImgs = [];
@@ -59,6 +56,9 @@ function preload() {
     rosaImgs.push(loadImage(`img/Rosas/${i}.png`));
     rosaURL.push(`img/Rosas/${i}.png`);
   }
+
+  jugador1 = new Ficha(loadImage('img/ficha1.png'), createVector(320, 1440));
+  jugador2 = new Ficha(loadImage('img/ficha3.png'), createVector(260, 1440));
 }
 
 let casillas = [
@@ -151,14 +151,22 @@ document.getElementById('dado').addEventListener('click', function resultado() {
 
 function mousePressed() {
 
-  let d1 = dist(mouseX, mouseY, jugador1.posicion.x, jugador1.posicion.y);
-  if (d1 < 15) {
+  let areaArrastre = 20; // Puedes ajustar este valor según tus necesidades
+
+  // Para jugador1
+  if (mouseX > jugador1.posicion.x - areaArrastre / 2 && mouseX < jugador1.posicion.x + areaArrastre / 2 &&
+      mouseY > jugador1.posicion.y - areaArrastre / 2 && mouseY < jugador1.posicion.y + areaArrastre / 2) {
     jugador1.arrastre = true;
+    jugador1.offsetX = mouseX - jugador1.posicion.x;
+    jugador1.offsetY = mouseY - jugador1.posicion.y;
   }
 
-  let d2 = dist(mouseX, mouseY, jugador2.posicion.x, jugador2.posicion.y);
-  if (d2 < 15) {
+  // Para jugador2
+  if (mouseX > jugador2.posicion.x - areaArrastre / 2 && mouseX < jugador2.posicion.x + areaArrastre / 2 &&
+      mouseY > jugador2.posicion.y - areaArrastre / 2 && mouseY < jugador2.posicion.y + areaArrastre / 2) {
     jugador2.arrastre = true;
+    jugador2.offsetX = mouseX - jugador2.posicion.x;
+    jugador2.offsetY = mouseY - jugador2.posicion.y;
   }
 
   for (let i = 0; i < casillas.length; i++) {
@@ -209,23 +217,20 @@ background(backgroundImage);
     rect(casilla.x, casilla.y, casilla.ancho, casilla.alto);
   }
 
-  fill(jugador1.color);
-  ellipse(jugador1.posicion.x, jugador1.posicion.y, 30, 30);
-
-  fill(jugador2.color);
-  ellipse(jugador2.posicion.x, jugador2.posicion.y, 30, 30);
+  image(jugador1.imagen, jugador1.posicion.x, jugador1.posicion.y, 50, 50);
+  image(jugador2.imagen, jugador2.posicion.x, jugador2.posicion.y, 50, 50);
   
 }
 
 function mouseDragged() {
   if (jugador1.arrastre) {
-    jugador1.posicion.x = mouseX;
-    jugador1.posicion.y = mouseY;
+    jugador1.posicion.x = mouseX - jugador1.offsetX;
+    jugador1.posicion.y = mouseY - jugador1.offsetY;
   }
 
   if (jugador2.arrastre) {
-    jugador2.posicion.x = mouseX;
-    jugador2.posicion.y = mouseY;
+    jugador2.posicion.x = mouseX - jugador2.offsetX;
+    jugador2.posicion.y = mouseY - jugador2.offsetY;
   }
 }
 
