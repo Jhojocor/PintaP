@@ -151,9 +151,8 @@ document.getElementById('dado').addEventListener('click', function resultado() {
 
 function mousePressed() {
 
-  let areaArrastre = 20; // Puedes ajustar este valor según tus necesidades
+  let areaArrastre = 50; 
 
-  // Para jugador1
   if (mouseX > jugador1.posicion.x - areaArrastre / 2 && mouseX < jugador1.posicion.x + areaArrastre / 2 &&
       mouseY > jugador1.posicion.y - areaArrastre / 2 && mouseY < jugador1.posicion.y + areaArrastre / 2) {
     jugador1.arrastre = true;
@@ -161,7 +160,6 @@ function mousePressed() {
     jugador1.offsetY = mouseY - jugador1.posicion.y;
   }
 
-  // Para jugador2
   if (mouseX > jugador2.posicion.x - areaArrastre / 2 && mouseX < jugador2.posicion.x + areaArrastre / 2 &&
       mouseY > jugador2.posicion.y - areaArrastre / 2 && mouseY < jugador2.posicion.y + areaArrastre / 2) {
     jugador2.arrastre = true;

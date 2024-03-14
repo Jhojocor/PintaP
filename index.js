@@ -1,7 +1,7 @@
 import express from 'express';
 import { Server } from 'socket.io';
 const PORT = 8080;
-const ip ='192.168.0.7'; //!cambia esto por la IP de tu pc
+const ip ='172.30.173.135'; //!cambia esto por la IP de tu pc
 
 const app = express();
 const httpServer = app.listen(PORT, ip,  () => {
