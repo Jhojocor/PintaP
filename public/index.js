@@ -151,7 +151,7 @@ document.getElementById('dado').addEventListener('click', function resultado() {
 
 function mousePressed() {
 
-  let areaArrastre = 50; 
+  let areaArrastre = 70; 
 
   if (mouseX > jugador1.posicion.x - areaArrastre / 2 && mouseX < jugador1.posicion.x + areaArrastre / 2 &&
       mouseY > jugador1.posicion.y - areaArrastre / 2 && mouseY < jugador1.posicion.y + areaArrastre / 2) {
